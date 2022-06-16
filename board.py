@@ -17,6 +17,7 @@ class Board:
         self.cellCount = self.size[0] * self.size[1]
         self.board = []
         self.setBoard(mineCount)
+        self.status = 0 # -1 means lost, 0 means in progress, 1 means win
 
     def setBoard(self, mineCount):
         randomMinePos = self.__randomMinePos(mineCount)
@@ -75,9 +76,29 @@ class Board:
     def getCell(self, pos):
         return self.board[pos[0]][pos[1]]
 
+    def getGameStatus(self):
+        match self.status:
+            case -1:
+                return "lost"
+            case 0:
+                return "in progress"
+            case 1:
+                return "won"
+
     def handleClickEvent(self, cell, button):
-        if button[0] and not cell.getIsFlagged() and not cell.getIsUncovered(): #if left click is pressed, uncover
+        # if left click is pressed, uncover unless it was flagged or it was previously uncovered
+        if button[0] and not cell.getIsFlagged() and not cell.getIsUncovered():
             cell.toggleIsUncovered()
             print(cell.getCellCoords())
-        elif button[2] and not cell.getIsUncovered(): #if right click is pressed, flag
+            # if the uncovered cell was a mine, game is lost
+            if cell.getIsMine():
+                self.status = -1
+            elif cell.neighborMinesCount == 0:
+                for neighbor in cell.getNeighbors():
+                    if neighbor.getIsMine() == False and neighbor.getIsUncovered() == False:
+                        self.handleClickEvent(neighbor, button = (1, 0, 0))
+        # if right click is pressed, flag it unless it was previously uncovered
+        elif button[2] and cell.getIsUncovered() == False:
             cell.toggleIsFlagged()
+        else:
+            pass

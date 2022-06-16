@@ -24,6 +24,8 @@ class Game:
             self.screen.fill((0, 0, 0))
             self.draw()
             pygame.display.flip()
+            if not self.board.getGameStatus() == "in progress":
+                isRunning = False
         pygame.quit()
 
     def draw(self):

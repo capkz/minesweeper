@@ -19,6 +19,9 @@ class Cell: # Possible States: 1) Not Clicked, Clicked, Flagged
     def getCellCoords(self):
         return self.coords
 
+    def getNeighbors(self):
+        return self.neighbors
+
     def toggleIsUncovered(self):
         self.isUncovered = True
 
@@ -35,12 +38,12 @@ class Cell: # Possible States: 1) Not Clicked, Clicked, Flagged
                 self.neighborMinesCount += 1
 
     def getCell(self):
-        if self.isFlagged:
-            return "flag_cell"
+        if self.isUncovered == False:
+            if self.isFlagged:
+                return "flag_cell"
+            return "default_cell"
         elif self.isMine is False:
             if self.neighborMinesCount == 0:
-                if self.isUncovered == False:
-                    return "default_cell"
                 return "0"
             else:
                 return str(self.neighborMinesCount)
