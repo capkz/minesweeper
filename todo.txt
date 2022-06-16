@@ -21,3 +21,8 @@ Extra TO-DOs:
 
 > ETD1: Show the flag count at the top left
 > ETD2: Show the elapsed time on the top right
+> ETD3: Change difficulty anytime
+    > ETD3.1: Difficulties:
+              - Easy (9x9), 10 mines
+              - Intermediate (16x16), 40 mines
+              - Hard (16x30), 99 mines
