@@ -1,4 +1,4 @@
-# Minesweeper
+# MineSweeper
  PyGame implementation of MineSweeper
  
 ## 1. Introduction
