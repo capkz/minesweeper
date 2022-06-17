@@ -30,4 +30,4 @@ Extra TO-DOs:
     > ETD3.1: Difficulties:
               - Easy (9x9), 10 mines
               - Intermediate (16x16), 40 mines
-              - Hard (16x30), 99 mines
+              - Hard (22x22), 99 mines

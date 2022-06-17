@@ -25,7 +25,10 @@ class Button:
         # First argument always requires a str, so f-string is used.
         self.textSurf = font.render(f"{text}", True, (0, 0, 0))
 
-    def clicked(self, event):
+    def setFill(self, color):
+        self.button.fill(color)
+
+    def clicked(self):
         mousePos = pygame.mouse.get_pos()
         if pointInRectangle(mousePos[0], mousePos[1], self.size[0], self.size[1], self.position[0], self.position[1]):
             return True

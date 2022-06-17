@@ -13,7 +13,7 @@ class Board:
                 self.size = (16, 16)
                 self.mineCount = 40
             case "hard":
-                self.size = (16, 30)
+                self.size = (22, 22)
                 self.mineCount = 99
         self.cellCount = self.size[0] * self.size[1]
         self.board = []

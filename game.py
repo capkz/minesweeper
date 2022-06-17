@@ -1,4 +1,4 @@
-import pygame, os
+import pygame, os, sys
 from board import Board
 from button import Button
 
@@ -33,6 +33,8 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     isRunning = False #TODO Add a prompt asking if user wants to quit their game in progress
+                    pygame.quit()
+                    sys.exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pos()[1] >= 100:
                     button = pygame.mouse.get_pressed(num_buttons=3) #Check for right click, which is a flag
                     self.handleClickEvent(pygame.mouse.get_pos(), button)
@@ -52,6 +54,7 @@ class Game:
 
         text = font.render(str(self.board.getGameStatus()[1]).title(), False, (0, 0, 0))
         self.screen.blit(text, (200, 5))
+
     def draw(self):
         pos = (0, 100)
         for row in range (self.board.getSize()[0]):
