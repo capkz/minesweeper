@@ -26,17 +26,19 @@ class Game:
             pygame.display.flip()
             if not self.board.getGameStatus()[0] == 0:
                 pygame.time.wait(2000)
-                if self.board.getGameStatus()[0] == -1: # If game is a loss, reset after wait
-                    self.board.resetBoard()
+                if self.board.getGameStatus()[0] == -1: # If game is a loss
+                    self.board.resetBoard() # Initiates reset back to initial state with the same bomb locations
                 else: # Game is a win
-                    isRunning = False
+                    isRunning = False # Stop execution of the game
+                    pygame.quit()
+                    sys.exit()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    isRunning = False #TODO Add a prompt asking if user wants to quit their game in progress
+                    isRunning = False
                     pygame.quit()
                     sys.exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pos()[1] >= 100:
-                    button = pygame.mouse.get_pressed(num_buttons=3) #Check for right click, which is a flag
+                    button = pygame.mouse.get_pressed(num_buttons=3) #Gets the button click
                     self.handleClickEvent(pygame.mouse.get_pos(), button)
                 # elif event.type == pygame.MOUSEBUTTONDOWN:
                 #     if self.resetButton.clicked(event):
@@ -44,6 +46,7 @@ class Game:
         pygame.quit()
 
     def topBarDraw(self):
+        # Top bar is drawn here, the uncovered cells count, and the game status is shown here.
         font = pygame.font.Font('assets/Grand9K Pixel.ttf', 60)
 
         text = font.render(str(self.board.getNumUncoveredCells()), False, (255, 0, 0))
@@ -66,6 +69,7 @@ class Game:
             pos = 0, pos[1] + self.cellSize[1]
 
     def loadAssets(self):
+        # All the game assets (pngs) are loaded in here ready to be used during the game is running.
         self.assets = {}
         path = 'assets/'
         filenames = [f for f in os.listdir(path) if f.endswith('.png')]
