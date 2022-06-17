@@ -53,3 +53,6 @@ class Cell: # Possible States: 1) Not Clicked, Clicked, Flagged
                 return "unclicked_mine"
             else:
                 return "clicked_mine"
+
+    def reset(self):
+        self.__init__(self.isMine, self.coords)
