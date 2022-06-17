@@ -29,9 +29,7 @@ class Game:
                 if self.board.getGameStatus()[0] == -1: # If game is a loss
                     self.board.resetBoard() # Initiates reset back to initial state with the same bomb locations
                 else: # Game is a win
-                    isRunning = False # Stop execution of the game
-                    pygame.quit()
-                    sys.exit()
+                    self.board.resetBoard(newGame = True)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     isRunning = False

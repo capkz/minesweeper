@@ -102,13 +102,13 @@ class Board:
             case 0:
                 return 0, "in progress"
             case 1:
-                return 1, "Congrats!"
+                return 1, "Congrats! NG!"
 
     def getNumUncoveredCells(self):
         # Returns the uncovered cell count.
         return self.numUncoveredCells
 
-    def resetBoard(self):
+    def resetBoard(self, newGame = False):
         # Resets the board to its initial state with the same bomb placements.
         # Loops through each cell and runs the reset method within them, lastly it
         # initializes the board's init method to reset it back to its initial state.
@@ -116,7 +116,10 @@ class Board:
             for col in range(self.size[1]):
                 cell = self.getCell((row,col))
                 cell.reset()
-        self.__init__(self.difficulty,self.randomMinePos)
+        if newGame == True:
+            self.__init__(self.difficulty)
+        else:
+            self.__init__(self.difficulty,self.randomMinePos)
 
     def handleClickEvent(self, cell, button):
         # Most of the game logic runs when the handleClickEvent is triggered.
