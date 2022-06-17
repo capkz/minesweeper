@@ -4,6 +4,10 @@ from button import Button
 
 BUTTON = (185,185,185)
 HOVER = (145,145,145)
+QUIT = (255,0,0)
+BEGINNER = (0,255,0)
+INTERMEDIATE = (255,100,0)
+HARD = (255,0,100)
 
 def draw_text(text, font, color, surface, x, y):
     textobj = font.render(text, 1, color)
@@ -21,28 +25,33 @@ class MainMenu:
 
     def run(self):
         pygame.init()
-        font = pygame.font.Font('assets/Grand9K Pixel.ttf', 60)
+        title_font = pygame.font.Font('assets/Grand9K Pixel.ttf', 100)
+        footer = pygame.font.Font('assets/Grand9K Pixel.ttf', 20)
         isRunning = True
 
         while isRunning == True:
             self.screen.fill((192, 192, 192))
-            draw_text('Main Menu', font, (255, 255, 255), self.screen, 250, 120)
+            draw_text('Main Menu', title_font, (255, 255, 255), self.screen, 150, 120)
+            draw_text('Made by capkz, 2022', footer, (255, 255, 255), self.screen, 20, 850)
 
             beginnerButton = Button("Beginner", (300,300), size=(200, 50))
             intermediateButton = Button("Intermediate", (250,400), size=(300, 50))
             hardButton = Button("Hard", (300,500), size=(200, 50))
-
+            quitButton = Button("Quit", (300, 600), size=(200, 50))
 
             if beginnerButton.clicked():
-                beginnerButton.setFill(HOVER)
-            if intermediateButton.clicked():
-                intermediateButton.setFill(HOVER)
-            if hardButton.clicked():
-                hardButton.setFill(HOVER)
+                beginnerButton.setFill(BEGINNER)
+            elif intermediateButton.clicked():
+                intermediateButton.setFill(INTERMEDIATE)
+            elif hardButton.clicked():
+                hardButton.setFill(HARD)
+            elif quitButton.clicked():
+                quitButton.setFill(QUIT)
 
             beginnerButton.render(self.screen)
             intermediateButton.render(self.screen)
             hardButton.render(self.screen)
+            quitButton.render(self.screen)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     isRunning = False
