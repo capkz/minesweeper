@@ -59,3 +59,9 @@ pip install -r requirements.txt
    
 10. Flagging a square as a bomb is optional. You can skip this feature if you would like. (As long as the player opens all the squares without a bomb, the player wins the game)
     > The player can flag a sus bomb cell and they can't click on it unless they de-flag it. The win condition for the game is set in the "__board.py__" in "__handleClickEvent()__" as: "self.numUncoveredCells + self.mineCount == self.cellCount". 
+
+## 4. Demonstration
+This section provides a video demonstration for the MineSweeper.
+
+https://user-images.githubusercontent.com/19250325/174346559-f391fbd8-8ca2-49bf-b3ea-4ebb204b953d.mp4
+
